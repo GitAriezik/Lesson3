@@ -11,7 +11,7 @@
 @interface ViewController ()
 
 @property(nonatomic, strong) NSArray * arrayPrices;
-@property(nonatomic, strong) NSArray * arrayValues;
+@property(nonatomic, strong) NSArray * arrayValue;
 @property(nonatomic, strong) NSMutableArray * arrayM;
 
 @end
@@ -21,23 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    NSString * stringValue = @"Fiat,WW,MercedecBenz";
     NSString * stringPrices = @"100000,150000,1500000";
-    NSString * stringValues = @"Fiat,WW,MercedecBenz";
     self.arrayM = [NSMutableArray array];
 
     
     self.arrayPrices = [stringPrices componentsSeparatedByString:@","];
-    self.arrayValues = [stringValues componentsSeparatedByString:@","];
+    self.arrayValue = [stringValue componentsSeparatedByString:@","];
     
     
     for (int i = 0; i < self.arrayPrices.count; i++) {
         
         NSDictionary * dict = [[NSDictionary alloc] initWithObjectsAndKeys:
                                [self.arrayPrices objectAtIndex:i], @"price",
-                               [self.arrayValues objectAtIndex:i], @"value", nil];
+                               [self.arrayValue objectAtIndex:i], @"value", nil];
      
         [self.arrayM addObject:dict];
-        NSLog(@" %@", dict);
+        NSLog(@"%@", dict);
     
     }
    
@@ -70,7 +71,7 @@
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [[self.arrayM objectAtIndex: indexPath.row]objectForKey:@"values"];
+    cell.textLabel.text = [[self.arrayM objectAtIndex: indexPath.row]objectForKey:@"value"];
     cell.detailTextLabel.text = [[self.arrayM objectAtIndex:indexPath.row]objectForKey:@"price"];
     return cell;
 }
